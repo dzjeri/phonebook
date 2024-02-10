@@ -85,16 +85,11 @@ app.post('/api/persons', (req, res) => {
     });
   }
 
-  if (alreadyExists(body.name)) {
-    return res.status(400).json({
-      error: 'name must be unique'
-    });
-  }
+  // if (alreadyExists(body.name)) { return res.status(400).json({ error: 'name must be unique' }); }
 
-  const id = generateId();
-  const person = { id, ...body };
-  persons = [...persons, person];
-  res.json(person);
+  const person = new Person({ ...body });
+  person.save()
+    .then(savedPerson => res.json(savedPerson));
 });
 
 const PORT = process.env.PORT || 3001;
