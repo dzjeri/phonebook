@@ -53,14 +53,11 @@ app.get('/info', (req, res) => {
 });
 
 app.get('/api/persons/:id', (req, res) => {
-  const id = Number(req.params.id);
-  const person = persons.find(p => p.id === id);
+  const id = req.params.id;
 
-  if (person) {
-    res.json(person);
-  } else {
-    res.status(404).end();
-  }
+  Person.findById(id)
+    .then(person => res.json(person))
+    .catch(error => res.status(404).end());
 });
 
 app.delete('/api/persons/:id', (req, res) => {
