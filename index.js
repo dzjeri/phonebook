@@ -46,13 +46,10 @@ app.get('/api/persons', (req, res) => {
 });
 
 app.get('/info', (req, res) => {
-  const amount = persons.length;
-  let page = `<p>Phonebook has info for ${amount} people</p>`;
-
-  const dateString = new Date().toString();
-  page += `<p>${dateString}</p>`;
-
-  res.send(page);
+  Person.countDocuments({}).then(count => res.send(
+    `<p>Phonebook has info for ${count} people</p>
+    <p>${new Date().toString()}</p>`
+  ));
 });
 
 app.get('/api/persons/:id', (req, res) => {
