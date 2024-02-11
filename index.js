@@ -40,6 +40,17 @@ app.get('/api/persons/:id', (req, res, next) => {
     .catch(error => next(error));
 });
 
+app.put('/api/persons/:id', (req, res, next) => {
+  const person = {
+    name: req.body.name,
+    number: req.body.number
+  };
+  
+  Person.findByIdAndUpdate(req.params.id, person, { new:true })
+    .then(returnedPerson => res.json(returnedPerson))
+    .catch(error => next(error));
+});
+
 app.delete('/api/persons/:id', (req, res, next) => {
   Person.findByIdAndDelete(req.params.id)
     .then(result => res.status(204).end())

@@ -1,0 +1,7 @@
+PUT http://localhost:3001/api/persons/65c6e7a9059b9c25a74bc6e3
+Content-Type: application/json
+
+{
+  "name": "Site Around-Fucker",
+  "number": "12345678"
+}
