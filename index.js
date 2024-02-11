@@ -14,29 +14,6 @@ morgan.token('person', function getPerson (req) {
   if (req.method === 'POST') return JSON.stringify(req.body);
 })
 
-let persons = [
-  { 
-    "id": 1,
-    "name": "Arto Hellas", 
-    "number": "040-123456"
-  },
-  { 
-    "id": 2,
-    "name": "Ada Lovelace", 
-    "number": "39-44-5323523"
-  },
-  { 
-    "id": 3,
-    "name": "Dan Abramov", 
-    "number": "12-43-234345"
-  },
-  { 
-    "id": 4,
-    "name": "Mary Poppendieck", 
-    "number": "39-23-6423122"
-  }
-];
-
 app.get('/', (req, res) => {
   res.send('<h1>Hello</h1>');
 });
@@ -65,15 +42,6 @@ app.delete('/api/persons/:id', (req, res) => {
     .then(result => res.status(204).end())
     .catch(error => console.log(error));
 });
-
-const generateId = () => {
-  return Math.round(Math.random() * 1000000000);
-}
-
-const alreadyExists = (name) => {
-  const found = persons.find(p => p.name.toLowerCase() === name.toLowerCase());
-  return Boolean(found);
-}
 
 app.post('/api/persons', (req, res) => {
   const body = req.body;
