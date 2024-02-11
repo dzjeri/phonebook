@@ -57,12 +57,6 @@ app.delete('/api/persons/:id', (req, res, next) => {
 app.post('/api/persons', (req, res, next) => {
   const body = req.body;
 
-  if (!body.hasOwnProperty('number')) {
-    return res.status(400).json({
-      error: 'number missing'
-    });
-  }
-
   // if (alreadyExists(body.name)) { return res.status(400).json({ error: 'name must be unique' }); }
 
   const person = new Person({ ...body });
