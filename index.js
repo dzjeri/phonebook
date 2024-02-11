@@ -12,7 +12,7 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms :p
 
 morgan.token('person', function getPerson (req) {
   if (req.method === 'POST') return JSON.stringify(req.body);
-})
+});
 
 app.get('/', (req, res) => {
   res.send('<h1>Hello</h1>');
